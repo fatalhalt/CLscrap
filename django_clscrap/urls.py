@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^$', lambda r: HttpResponseRedirect('app/')),  # 302 redirect from / to app/index
     url(r'^admin/', admin.site.urls),
     url(r'^app/', include('myapp.urls')),
+    url(r'^api/', include('myapp.urls')),
 ]
