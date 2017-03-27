@@ -2,11 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 import cl
 
 
 def app(request):
-    return HttpResponse("hello, app!")
+    data, baseurl, keyword = cl.query_craigslist()
+    return render(request, 'index.html', {'data': data, 'baseurl': baseurl, 'keyword': keyword})
 
 
 def page(request):

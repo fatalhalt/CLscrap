@@ -6,8 +6,8 @@ from bs4 import BeautifulSoup
 
 def query_craigslist(baseurl=None, keyword='wrx|sti'):
     if baseurl is None:
-        baseurl = 'https://chicago.craigslist.org/'
-    response = requests.get(baseurl + 'search/pta', params={'query': keyword, 'srchType': 'T'})
+        baseurl = 'https://chicago.craigslist.org'
+    response = requests.get(baseurl + '/search/pta', params={'query': keyword, 'srchType': 'T'})
     soup = BeautifulSoup(response.content, "html.parser")
 
     results = soup.find_all('li', {'class': 'result-row'})  # at max 120 results per 1 page
@@ -27,12 +27,12 @@ def query_craigslist(baseurl=None, keyword='wrx|sti'):
         except AttributeError:
             pass  # ignore empty fields
 
-    return items
+    return items, baseurl, keyword
 
 
 def main():
     parser = argparse.ArgumentParser(description="craigslist WRX and STi parts finder", parents=())
-    parser.add_argument("-b", "--baseurl", help='baseurl, e.g. https://chicago.craigslist.org/')
+    parser.add_argument("-b", "--baseurl", help='baseurl, e.g. https://chicago.craigslist.org')
     parser.add_argument("-k", "--keyword", default='wrx|sti', help='keyword to search')
 
     args, extra_args = parser.parse_known_args()
