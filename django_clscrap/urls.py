@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 urlpatterns = [
-    url(r'^$', lambda r: HttpResponseRedirect('app/')),  # 302 redirect from / to app/index
+    #url(r'^$', lambda r: HttpResponseRedirect('app/')),  # 302 redirect from / to app/index
+    url(r'^$', lambda r: HttpResponse('hello, world! visit app/ to view listing')),
     url(r'^admin/', admin.site.urls),
     url(r'^app/', include('myapp.urls')),
     url(r'^api/', include('myapp.urls')),
