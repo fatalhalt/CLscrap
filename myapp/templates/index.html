@@ -24,7 +24,7 @@
 <div id="item-list">
 {% for i in data %}
     <div class="item">
-        <a href="{{ baseurl }}{{ i.link }}" class="item-title">{{ i.title }}</a>
+        <a href="{{ i.link }}" class="item-title">{{ i.title }}</a>
         <span class="item-date">{{ i.date }}</span>
         <span class="item-price">{{ i.price }}</span>
         <span class="item-hood">{{ i.hood }}</span>
@@ -32,5 +32,19 @@
     </div>
 {% endfor %}
 </div>
+<script type="application/javascript">
+function getCLPostBody(l) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', l.getAttribute('href'), true);
+    xhr.onload = function () {
+        var clpost = new DOMParser().parseFromString(xhr.responseText, "text/html");
+        clpost.documentElement.innerHTML = xhr.responseText;
+
+        var postbody = clpost.getElementById('postingbody').lastChild.wholeText.toString().trim()
+        return postbody;
+    }
+    xhr.send();
+}
+</script>
 </body>
 </html>

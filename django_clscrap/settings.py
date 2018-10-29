@@ -25,7 +25,7 @@ SECRET_KEY = '-(n)6%3v7^c-nbqc%re3@12n@!buzm(+i!ihqs=14#udznc8f@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.13','fatalhalt.net']
 
 
 # Application definition
